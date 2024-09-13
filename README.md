@@ -14,6 +14,8 @@
 
 # REGEX
 
+[tool](https://regex101.com/)
+
 ### Special Characters (Meta-characters)
 
 | Meta-character | Meaning                                                              |
@@ -45,3 +47,67 @@ Character classes match one character out of a set of characters.
 | `\W`            | Matches any non-word character                            |
 | `\s`            | Matches any whitespace character (spaces, tabs, newlines) |
 | `\S`            | Matches any non-whitespace character                      |
+
+## Operators
+
+### Truthy values
+
+-   All numbers(positive and negative) are truthy except zero
+-   All strings are truthy except an empty string ('')
+-   The boolean true
+
+### Falsy values
+
+-   0
+-   0n
+-   null
+-   undefined
+-   NaN
+-   the boolean false
+-   '', "", ``, empty string
+
+### [Operator Precedence](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)
+
+## Date
+
+> date formmater
+
+```ts
+const format = (date: Date, options: [any]) => {
+    const leftPad = (data: any, spacing: number) => {
+        const strPad = String(data);
+        if (strPad.length < spacing) {
+            return `${'0'.repeat(spacing - strPad.length)}${strPad}`;
+        }
+        return strPad;
+    };
+    let dateStr = '';
+    for (let i = 0; i < options.length; i++) {
+        switch (options[i]) {
+            case 'year':
+                dateStr.concat(`${leftPad(date.getFullYear(), 4)}/`);
+                break;
+            case 'month':
+                dateStr.concat(`${leftPad(date.getMonth(), 2)}/`);
+                break;
+            case 'date':
+                dateStr.concat(`${leftPad(date.getDate(), 2)}/`);
+                break;
+            case 'day':
+                dateStr.concat(`${leftPad(date.getDay(), 2)}/`);
+                break;
+            case 'hour':
+                dateStr.concat(`${leftPad(date.getHours(), 2)}/`);
+                break;
+            case 'min':
+                dateStr.concat(`${leftPad(date.getMinutes(), 2)}/`);
+                break;
+            case 'sec':
+                dateStr.concat(`${leftPad(date.getSeconds(), 2)}/`);
+                break;
+            default:
+                break;
+        }
+    }
+};
+```
