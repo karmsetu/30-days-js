@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        #root {
+            display: grid;
+            height: 90vh;
+            width: 90vw;
+            grid-template-columns: repeat(10, auto);
+            grid-template-rows: repeat(10, auto);
+        }
+        .number-tile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 3px;
+            border-radius: 5%;
+        }
+    </style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>100 numbers</title>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script defer>
+        const checkPrime = (num) => {
+            for (let i = 0; i < num; i++) {
+                // iterates over n times
+                var caught = 0;
+                if (i === 2) return true;
+                if (i % 2 === 0) continue; //? if  the number is even then continue next iteration, ignoring the code block below
+                for (let j = 3; j < Math.round(i / 2); j += 2) {
+                    //? starting with j = 3, if it dividable(w/ reminder = 0) with the num j then break the loop
+                    if (i % j === 0) {
+                        caught += 1;
+                        break;
+                    }
+                }
+                if (!caught) return true;
+                return false;
+            }
+        };
+        const root = document.getElementById('root');
+        for (let i = 1; i <= 100; i++) {
+            const elem = document.createElement('span');
+            elem.className = 'number-tile';
+            elem.style.color = 'white';
+            elem.innerText = i;
+            // iterates over n times
+            var caught = 0;
+            if (i === 2) elem.style.background = 'red';
+            if (i % 2 === 0) {
+                elem.style.background = 'green';
+                root.appendChild(elem);
+
+                continue;
+            } //? if  the number is even then continue next iteration, ignoring the code block below
+            for (let j = 3; j < Math.round(i / 2); j += 2) {
+                //? starting with j = 3, if it dividable(w/ reminder = 0) with the num j then break the loop
+                if (i % j === 0) {
+                    caught += 1;
+                    elem.style.background = 'yellow';
+
+                    break;
+                }
+            }
+            if (!caught) elem.style.background = 'red';
+            root.appendChild(elem);
+        }
+        elem.style.backgroundColor = checkPrime(i)
+            ? 'red'
+            : i % 2 === 0
+            ? 'green'
+            : 'yellow';
+        root.append(elem);
+    </script>
+</html>
