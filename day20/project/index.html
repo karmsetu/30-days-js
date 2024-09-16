@@ -1,0 +1,61 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>JavaScript for Everyone:DOM</title>
+    </head>
+    <body>
+        <div class="wrapper">
+            <h1>Asabeneh Yetayeh challenges in <span id="year">2020</span></h1>
+            <h2>30DaysOfJavaScript Challenge</h2>
+            <div id="date-time"></div>
+            <ul>
+                <li>30DaysOfPython Challenge Done</li>
+                <li>30DaysOfJavaScript Challenge Ongoing</li>
+                <li>30DaysOfReact Challenge Coming</li>
+                <li>30DaysOfFullStack Challenge Coming</li>
+                <li>30DaysOfDataAnalysis Challenge Coming</li>
+                <li>30DaysOfReactNative Challenge Coming</li>
+                <li>30DaysOfMachineLearning Challenge Coming</li>
+            </ul>
+        </div>
+        <script defer>
+            document.getElementById(
+                'date-time'
+            ).innerText = `${new Date().toISOString()}`;
+
+            const colors = [
+                { name: 'Aqua', hex: '#00FFFF' },
+                { name: 'Black', hex: '#000000' },
+                { name: 'Blue', hex: '#0000FF' },
+                { name: 'Fuchsia', hex: '#FF00FF' },
+                { name: 'Gray', hex: '#808080' },
+                { name: 'Green', hex: '#008000' },
+                { name: 'Lime', hex: '#00FF00' },
+                { name: 'Maroon', hex: '#800000' },
+                { name: 'Navy', hex: '#000080' },
+                { name: 'Olive', hex: '#808000' },
+            ];
+
+            setInterval(() => {
+                document.getElementById('year').style.color =
+                    colors[Math.round(Math.random() * (colors.length - 1))].hex;
+                document.getElementById('date-time').style.backgroundColor =
+                    colors[Math.round(Math.random() * (colors.length - 1))].hex;
+            }, 1000);
+
+            document.querySelectorAll('li').forEach((list) => {
+                const status =
+                    list.innerText.split(' ')[
+                        list.innerText.split(' ').length - 1
+                    ];
+                list.style.backgroundColor =
+                    status === 'Done'
+                        ? 'green'
+                        : status === 'Ongoing'
+                        ? 'yellow'
+                        : 'red';
+            });
+        </script>
+    </body>
+</html>

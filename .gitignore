@@ -5,3 +5,4 @@ node_modules
 
 # Do not ignore a specific file in the root directory
 !/index.js
+!/day20/index.js
